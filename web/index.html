@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Registro y consulta de marcaciones de personal.">
+    <title>Marcaciones | Recursos Humanos</title>
+    <link rel="stylesheet" href="/estilos.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="cabecera">
+      <div class="marca"><strong>Recursos Humanos</strong><span>Control de asistencia</span></div>
+    </header>
+
+    <main>
+      <section class="presentacion" aria-labelledby="titulo">
+        <div><h1 id="titulo">Marcaciones</h1><p>Consulta y administra los horarios de ingreso y salida.</p></div>
+        <button id="actualizar" class="boton secundario" type="button">Actualizar registros</button>
+      </section>
+
+      <div id="mensaje" class="mensaje" role="status" aria-live="polite" hidden></div>
+
+      <section class="resumen" aria-label="Resumen de los registros filtrados">
+        <article class="tarjeta-resumen"><span>Total de registros</span><strong id="total">—</strong></article>
+        <article class="tarjeta-resumen"><span>Puntuales</span><strong id="puntuales">—</strong></article>
+        <article class="tarjeta-resumen"><span>Con atraso</span><strong id="atrasos">—</strong></article>
+        <article class="tarjeta-resumen"><span>Incompletos</span><strong id="incompletos">—</strong></article>
+      </section>
+
+      <div class="distribucion">
+        <section class="panel formulario-panel" aria-labelledby="titulo-formulario">
+          <div class="titulo-panel"><h2 id="titulo-formulario">Nueva marcación</h2><p>Los campos con * son obligatorios.</p></div>
+          <form id="formulario-marcacion">
+            <label for="codigo_empleado">Código de empleado *</label>
+            <input id="codigo_empleado" name="codigo_empleado" placeholder="EMP001" maxlength="30" required>
+
+            <label for="nombre_empleado">Nombre completo *</label>
+            <input id="nombre_empleado" name="nombre_empleado" placeholder="Ana Pérez" maxlength="120" required>
+
+            <label for="fecha">Fecha *</label>
+            <input id="fecha" name="fecha" type="date" min="1000-01-01" max="9999-12-31" required>
+
+            <fieldset>
+              <legend>Horario programado</legend>
+              <div class="dos-columnas">
+                <div><label for="hora_ingreso_programada">Ingreso *</label><input id="hora_ingreso_programada" name="hora_ingreso_programada" type="time" value="08:00" required></div>
+                <div><label for="hora_salida_programada">Salida *</label><input id="hora_salida_programada" name="hora_salida_programada" type="time" value="16:00" required></div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Horario real</legend>
+              <div class="dos-columnas">
+                <div><label for="hora_ingreso_real">Ingreso</label><input id="hora_ingreso_real" name="hora_ingreso_real" type="time" aria-describedby="ayuda-horario"></div>
+                <div><label for="hora_salida_real">Salida</label><input id="hora_salida_real" name="hora_salida_real" type="time" aria-describedby="ayuda-horario"></div>
+              </div>
+              <p class="ayuda" id="ayuda-horario">Si falta una hora real, el registro quedará incompleto.</p>
+            </fieldset>
+
+            <label for="observacion">Observación <span class="opcional">(opcional)</span></label>
+            <textarea id="observacion" name="observacion" rows="3" maxlength="500" placeholder="Agrega un detalle si es necesario"></textarea>
+            <p class="ayuda">El estado se calcula automáticamente al guardar.</p>
+
+            <div class="acciones-formulario">
+              <button id="guardar" class="boton primario" type="submit">Guardar marcación</button>
+              <button id="cancelar" class="boton secundario" type="button" hidden>Cancelar edición</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel registros-panel" aria-labelledby="titulo-registros">
+          <div class="titulo-panel encabezado-registros"><div><h2 id="titulo-registros">Registros de asistencia</h2><p>El resumen corresponde a los filtros aplicados.</p></div><span id="estado-consulta" class="estado-consulta" role="status">Cargando…</span></div>
+
+          <form id="formulario-filtros" class="filtros">
+            <div><label for="filtro-empleado">Código de empleado</label><input id="filtro-empleado" name="empleado" placeholder="Todos los empleados" maxlength="30"></div>
+            <div><label for="filtro-fecha">Fecha</label><input id="filtro-fecha" name="fecha" type="date" min="1000-01-01" max="9999-12-31"></div>
+            <button class="boton primario" type="submit">Filtrar</button>
+            <button id="limpiar" class="boton secundario" type="button">Limpiar</button>
+          </form>
+
+          <div class="tabla-contenedor" tabindex="0" role="region" aria-label="Tabla de marcaciones con desplazamiento horizontal">
+            <table>
+              <caption class="solo-lectores">Marcaciones con horarios programados, horarios reales y estado</caption>
+              <thead><tr><th scope="col">ID</th><th scope="col">Empleado</th><th scope="col">Fecha</th><th scope="col">Ingreso</th><th scope="col">Salida</th><th scope="col">Estado</th><th scope="col">Observación</th><th scope="col">Acciones</th></tr></thead>
+              <tbody id="registros"><tr><td colspan="8" class="vacio">Cargando marcaciones…</td></tr></tbody>
+            </table>
+          </div>
+          <p class="nota-tabla">Cada horario muestra la hora real y, debajo, la programada.</p>
+        </section>
+      </div>
+    </main>
+    <footer>Recursos Humanos · Gestión de marcaciones</footer>
+  </body>
+</html>

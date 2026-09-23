@@ -1,0 +1,345 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f5f5f5;
+  color: #333;
+  font: 14px/1.5 Arial, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid #286447;
+  outline-offset: 2px;
+}
+
+.cabecera {
+  padding: 16px 24px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.marca strong,
+.marca span {
+  display: block;
+}
+
+main {
+  max-width: 1320px;
+  margin: auto;
+  padding: 24px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+.presentacion,
+.encabezado-registros,
+.filtros,
+.acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.presentacion,
+.resumen,
+.mensaje {
+  margin-bottom: 20px;
+}
+
+.marca span,
+.presentacion p,
+.titulo-panel p,
+.ayuda,
+.opcional,
+.estado-consulta,
+.nota-tabla,
+td small,
+footer {
+  color: #666;
+  font-size: 13px;
+}
+
+button {
+  padding: 9px 14px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: white;
+  color: #333;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #eee;
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.primario {
+  background: #286447;
+  border-color: #286447;
+  color: white;
+}
+
+.primario:hover {
+  background: #1e4d36;
+}
+
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #ddd;
+  background: white;
+}
+
+.tarjeta-resumen {
+  padding: 12px 16px;
+}
+
+.tarjeta-resumen strong {
+  display: block;
+  font-size: 24px;
+}
+
+.distribucion {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+}
+
+.panel {
+  min-width: 0;
+  background: white;
+  border: 1px solid #ddd;
+}
+
+.titulo-panel,
+#formulario-marcacion,
+.filtros,
+.nota-tabla {
+  padding: 16px;
+}
+
+.titulo-panel {
+  border-bottom: 1px solid #ddd;
+}
+
+label,
+legend {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+input,
+textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: white;
+  color: #333;
+}
+
+textarea {
+  resize: vertical;
+}
+
+#formulario-marcacion>input {
+  margin-bottom: 14px;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 16px 0;
+  padding: 0;
+  border: 0;
+}
+
+.dos-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ayuda {
+  margin-top: 6px;
+}
+
+.acciones-formulario {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.encabezado-registros,
+.filtros {
+  flex-wrap: wrap;
+}
+
+.filtros {
+  align-items: end;
+}
+
+.filtros>div {
+  flex: 1 1 150px;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background: #f3f3f3;
+}
+
+td strong,
+td small {
+  display: block;
+}
+
+.nombre-empleado,
+.observacion {
+  min-width: 120px;
+  overflow-wrap: anywhere;
+}
+
+.fecha-registro,
+.insignia,
+td small {
+  white-space: nowrap;
+}
+
+.insignia {
+  font-weight: bold;
+}
+
+.puntual,
+.estado-consulta[data-estado="listo"] {
+  color: #286447;
+}
+
+.atraso {
+  color: #8a5700;
+}
+
+.incompleto {
+  color: #666;
+}
+
+.eliminar,
+.estado-consulta[data-estado="error"] {
+  color: #a32929;
+}
+
+.acciones {
+  justify-content: start;
+  gap: 6px;
+}
+
+.accion {
+  padding: 6px 8px;
+}
+
+.vacio {
+  padding: 32px 16px;
+  text-align: center;
+  color: #666;
+}
+
+.mensaje {
+  padding: 12px;
+  border: 1px solid #b4ccbc;
+  background: #edf5ef;
+  color: #286447;
+}
+
+.mensaje.error {
+  border-color: #e0bcbc;
+  background: #fcf0f0;
+  color: #a32929;
+}
+
+footer {
+  padding: 16px;
+  text-align: center;
+}
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  main {
+    padding: 16px;
+  }
+
+  .presentacion {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .resumen {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .distribucion {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .registros-panel {
+    grid-row: 1;
+  }
+
+  .filtros>div {
+    flex-basis: 100%;
+  }
+}
